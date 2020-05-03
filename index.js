@@ -93,7 +93,56 @@ var app = http.createServer(function(request,response){
       
     }
     
-
+    //bossServices - restaurant manage service
+    else if (pathname === '/boss/getRestaurantList'){
+      
+    }else if (pathname === '/boss/createRestaurant'){
+      
+    }else if (pathname === '/boss/updateRestaurant'){
+      
+    }else if (pathname === '/boss/deleteRestaurant'){
+      
+    }
+    //bossServices - origin menu service
+    else if (pathname === '/boss/createOriginMenu'){
+      
+    }else if (pathname === '/boss/updateOriginMenu'){
+      
+    }else if (pathname === '/boss/deleteOriginMenu'){
+      
+    }else if (pathname === '/boss/getOriginMenuList'){
+      
+    }
+    //bossServices - menu service
+    else if (pathname === '/boss/createMenu'){
+      
+    }else if (pathname === '/boss/updateMenu'){
+      
+    }else if (pathname === '/boss/deleteMenu'){
+      
+    }
+    //bossServices - ticket service
+    else if (pathname === '/boss/getPaidTicketList'){
+      
+    }else if (pathname === '/boss/setTicketDisable'){
+      
+    }else if (pathname === '/boss/getCertifiedTicketList'){
+      
+    }
+    //bossServices - review service
+    else if (pathname === '/boss/getReviewList'){
+      
+    }else if (pathname === '/boss/createReply'){
+      
+    }else if (pathname === '/boss/updateReply'){
+      
+    }else if (pathname === '/boss/deleteReply'){
+      
+    }
+    //bossServices - info service
+    else if (pathname === '/boss/updateInfo'){
+      
+    }
     else {
       response.writeHead(404);
       response.end('Not found');
