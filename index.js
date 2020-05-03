@@ -4,6 +4,18 @@ var qs = require('querystring');
 
 //lib
 var loginService = require('./lib/loginService');
+var userInfoService = require('./lib/userServices/userInfoService');
+var userSearchService = require('./lib/userServices/userSearchService');
+var userTicketService = require('./lib/userServices/userTicketService');
+var userWishListService = require('./lib/userServices/userWishListService');
+var userFavoriteService = require('./lib/userServices/userFavoriteService');
+var userReviewService = require('./lib/userServices/userReviewService');
+var bossRestaurantService = require('./lib/bossServices/bossRestaurantManageService');
+var bossOriginService = require('./lib/bossServices/bossOriginMenuService');
+var bossMenuService = require('./lib/bossServices/bossMenuService');
+var bossTicketService = require('./lib/bossServices/bossTicketService');
+var bossReviewService = require('./lib/bossServices/bossReviewService');
+var bossInfoService = require('./lib/bossServices/bossInfoService');
 
 //db
 var db = require('./lib/mongoCollections')
@@ -36,61 +48,61 @@ var app = http.createServer(function(request,response){
 
     //userServices - info service
     else if (pathname === '/user/address_update'){
-
+      userInfoService.setAddress(request, response)
     }else if (pathname === '/user/updateInfo'){
-      
+      userInfoService.updateInfo(request, response)
     }
     //userServices - search service
     else if (pathname === '/user/getMenuBySearchBar'){
-      
+      userSearchService.getMenuBySearchBar(request, response)
     }else if (pathname === '/user/getMenuByCategory'){
-      
+      userSearchService.getMenuByCategory(request, response)
     }else if (pathname === '/user/getMenuByTime'){
-      
+      userSearchService.getMenuByTime(request, response)
     }else if (pathname === '/user/getMenuDetail'){
-      
+      userSearchService.getMenuDetail(request, response)
     }else if (pathname === '/user/getRestaurantBySearchBar'){
-      
+      userSearchService.getRestaurantBySearchBar(request, response)
     }else if (pathname === '/user/getRestaurantByCategory'){
-      
+      userSearchService.getRestaurantByCategory(request, response)
     }else if (pathname === '/user/getRestaurantDetail'){
-      
+      userSearchService.getRestaurantDetail(request, response)
     }
     //userServices - ticket service
     else if (pathname === '/user/getAvailableTicketMethod'){
-      
+      userTicketService.getAvailableTicketMethod(request, response)
     }else if (pathname === '/user/createTicket'){
-      
+      userTicketService.createTicket(request, response)
     }else if (pathname === '/user/payTicket'){  //payment_start !!
-      
+      userTicketService.payTicket(request, response)
     }else if (pathname === '/user/addTicketList'){  //payment_complete !!
-      
+      userTicketService.addTicketList(request, response)
     }else if (pathname === '/user/getTicketList'){  //pay log
-      
+      userTicketService.getTicketList(request, response)
     }
     //userServices - wish list service
     else if (pathname === '/user/addMenuToWishList'){
-      
+      userWishListService.addMenuToWishList(request, response)
     }else if (pathname === '/user/getWishList'){
-      
+      userWishListService.getWishList(request, response)
     }else if (pathname === '/user/deleteMenuInWishList'){
-      
+      userWishListService.deleteMenuInWishList(request, response)
     }
     //userServices - favorite service
     else if (pathname === '/user/addRestaurantToFavoriteList'){
-      
+      userFavoriteService.addRestaurantToFavoriteList(request, response)
     }else if (pathname === '/user/getFavoriteList'){
-      
+      userFavoriteService.getFavoriteList(request, response)
     }else if (pathname === '/user/deleteRestaurantInFavoriteList'){
-      
+      userFavoriteService.deleteRestaurantInFavoriteList(request, response)
     }
     //userServices - review service
     else if (pathname === '/user/createReview'){
-      
-    }else if (pathname === '/user/createReview'){
-      
-    }else if (pathname === '/user/createReview'){
-      
+      userReviewService.createReview(request, response)
+    }else if (pathname === '/user/updateReview'){
+      userReviewService.updateReview(request, response)
+    }else if (pathname === '/user/deleteReview'){
+      userReviewService.deleteReview(request, response)
     }
     
     //bossServices - restaurant manage service
