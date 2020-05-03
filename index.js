@@ -33,6 +33,65 @@ var app = http.createServer(function(request,response){
     }else if(pathname === '/boss/login'){
       loginService.bossLogin(request, response)
     }
+
+    //userServices - info service
+    else if (pathname === '/user/address_update'){
+
+    }else if (pathname === '/user/updateInfo'){
+      
+    }
+    //userServices - search service
+    else if (pathname === '/user/getMenuBySearchBar'){
+      
+    }else if (pathname === '/user/getMenuByCategory'){
+      
+    }else if (pathname === '/user/getMenuByTime'){
+      
+    }else if (pathname === '/user/getMenuDetail'){
+      
+    }else if (pathname === '/user/getRestaurantBySearchBar'){
+      
+    }else if (pathname === '/user/getRestaurantByCategory'){
+      
+    }else if (pathname === '/user/getRestaurantDetail'){
+      
+    }
+    //userServices - ticket service
+    else if (pathname === '/user/getAvailableTicketMethod'){
+      
+    }else if (pathname === '/user/createTicket'){
+      
+    }else if (pathname === '/user/payTicket'){  //payment_start !!
+      
+    }else if (pathname === '/user/addTicketList'){  //payment_complete !!
+      
+    }else if (pathname === '/user/getTicketList'){  //pay log
+      
+    }
+    //userServices - wish list service
+    else if (pathname === '/user/addMenuToWishList'){
+      
+    }else if (pathname === '/user/getWishList'){
+      
+    }else if (pathname === '/user/deleteMenuInWishList'){
+      
+    }
+    //userServices - favorite service
+    else if (pathname === '/user/addRestaurantToFavoriteList'){
+      
+    }else if (pathname === '/user/getFavoriteList'){
+      
+    }else if (pathname === '/user/deleteRestaurantInFavoriteList'){
+      
+    }
+    //userServices - review service
+    else if (pathname === '/user/createReview'){
+      
+    }else if (pathname === '/user/createReview'){
+      
+    }else if (pathname === '/user/createReview'){
+      
+    }
     
 
     else {
