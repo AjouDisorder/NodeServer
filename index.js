@@ -2,6 +2,10 @@ var http = require('http');
 var url = require('url');
 var qs = require('querystring');
 
+//lib
+var loginService = require('./lib/loginService');
+
+//db
 var db = require('./lib/mongoCollections')
 var Address_DB = db.collection_address()
 var Picture_DB = db.collection_picture()
@@ -19,10 +23,19 @@ var app = http.createServer(function(request,response){
     var queryData = url.parse(_url, true).query;
     var pathname = url.parse(_url, true).pathname;
 
-    if(pathname === '/'){
-      response.writeHead(200);
-      response.end('success');
-    }else {
+    //Login Service
+    if(pathname === '/user/signup'){
+      loginService.userSignup(request, response)
+    }else if(pathname === '/user/login'){
+      loginService.userLogin(request, response)
+    }else if(pathname === '/boss/signup'){
+      loginService.bossSignup(request, response)
+    }else if(pathname === '/boss/login'){
+      loginService.bossLogin(request, response)
+    }
+    
+
+    else {
       response.writeHead(404);
       response.end('Not found');
     }
