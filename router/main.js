@@ -108,6 +108,9 @@ module.exports = function(app){
    app.get('/boss/getRestaurantList', function(req, res){
       bossRestaurantService.getRestaurantList(req, res)
    })
+   app.get('/boss/getRestaurantByIndex', function(req, res){
+      bossRestaurantService.getRestaurantByIndex(req, res)
+   })
    app.post('/boss/createRestaurant', function(req, res){
       bossRestaurantService.createRestaurant(req, res)
    })
