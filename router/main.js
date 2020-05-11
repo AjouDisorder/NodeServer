@@ -1,5 +1,6 @@
 //lib
 var loginService = require('../lib/loginService');
+var pictureService = require('../lib/pictureService');
 var userInfoService = require('../lib/userServices/userInfoService');
 var userSearchService = require('../lib/userServices/userSearchService');
 var userTicketService = require('../lib/userServices/userTicketService');
@@ -12,6 +13,19 @@ var bossMenuService = require('../lib/bossServices/bossMenuService');
 var bossTicketService = require('../lib/bossServices/bossTicketService');
 var bossReviewService = require('../lib/bossServices/bossReviewService');
 var bossInfoService = require('../lib/bossServices/bossInfoService');
+
+//multer for picture
+const multer = require('multer')
+const upload = multer({
+   storage: multer.diskStorage({
+     destination: function (req, file, cb) {
+       cb(null, 'data/imgs/');
+     },
+     filename: function (req, file, cb) {
+         cb(null, new Date().valueOf() + file.originalname);
+     }
+   }),
+ });
 
 module.exports = function(app){
    //Login Service
@@ -26,6 +40,14 @@ module.exports = function(app){
    })
    app.post('/boss/login', function(req, res){
       loginService.bossLogin(req, res)
+   })
+
+   //Picture Service
+   app.post('/createPicture', upload.single('img'), function(req, res){
+      pictureService.createPicture(req, res)
+   })
+   app.post('/updatePicture', upload.single('img'), function(req, res){
+      pictureService.updatePicture(req, res)
    })
 
    //userServices - info service
