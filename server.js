@@ -1,6 +1,7 @@
 var express = require('express');
 var app = express();
 app.use(express.json())
+app.use(express.urlencoded({extended: true}))
 var router = require('./router/main')(app);
 
 var server = app.listen(3000, function(){
