@@ -67,8 +67,8 @@ module.exports = function(app){
    app.get('/user/getMenuByTime', function(req, res){
       userSearchService.getMenuByTime(req, res)
    })
-   app.get('/user/getMenuDetail', function(req, res){
-      userSearchService.getMenuDetail(req, res)
+   app.get('/user/getMenuListOfRestaurant', function(req, res){
+      userSearchService.getMenuListOfRestaurant(req, res)
    })
    app.get('/user/getRestaurantBySearchBar', function(req, res){
       userSearchService.getRestaurantBySearchBar(req, res)
@@ -156,6 +156,9 @@ module.exports = function(app){
       bossOriginMenuService.getOriginMenuList(req, res)
    })
    //bossServices - menu service
+   app.get('/boss/getMenuList', (req, res)=>{
+      bossMenuService.getMenuList(req, res)
+   })
    app.post('/boss/createMenu', function(req, res){
       bossMenuService.createMenu(req, res)
    })
