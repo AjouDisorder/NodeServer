@@ -4,6 +4,8 @@ app.use(express.json())
 app.use(express.urlencoded({extended: true}))
 var router = require('./router/main')(app);
 
+var GeoJSON = require('geojson');
+
 var server = app.listen(3000, function(){
     console.log("Express server has started on port 3000")
 });
