@@ -21,6 +21,7 @@
   "homepage": "https://github.com/web-n/Nodejs#readme",
   "dependencies": {
     "express": "^4.17.1",
+    "geojson": "^0.5.0",
     "mongodb": "^3.5.6",
     "mongoose": "^5.9.12",
     "multer": "^1.4.2",
