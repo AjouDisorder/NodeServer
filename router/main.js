@@ -116,6 +116,9 @@ module.exports = function(app){
       userFavoriteService.deleteRestaurantInFavoriteList(req, res)
    })
    //userServices - review service
+   app.get('/user/getReviewList', (req, res)=>{
+      userReviewService.getReviewList(req, res)
+   })
    app.post('/user/createReview', function(req, res){
       userReviewService.createReview(req, res)
    })
@@ -129,9 +132,6 @@ module.exports = function(app){
    //bossServices - restaurant manage service
    app.get('/boss/getRestaurantList', function(req, res){
       bossRestaurantService.getRestaurantList(req, res)
-   })
-   app.get('/boss/getRestaurantByIndex', function(req, res){
-      bossRestaurantService.getRestaurantByIndex(req, res)
    })
    app.post('/boss/createRestaurant', function(req, res){
       bossRestaurantService.createRestaurant(req, res)
@@ -181,9 +181,6 @@ module.exports = function(app){
    //bossServices - review service
    app.get('/boss/getReviewList', function(req, res){
       bossReviewService.getReviewList(req, res)
-   })
-   app.post('/boss/createReply', function(req, res){
-      bossReviewService.createReply(req, res)
    })
    app.post('/boss/updateReply', function(req, res){
       bossReviewService.updateReply(req, res)
