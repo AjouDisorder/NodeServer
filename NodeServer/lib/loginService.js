@@ -41,7 +41,7 @@ module.exports = {
             User_DB.findOne({userId: userId, password: password}).exec((err, result) =>{
                 if(result){
                     console.log(result)
-                    res.json({result});
+                    res.json(result);
                 }
                 else{
                     res.json({"result" : "fail!!"});
