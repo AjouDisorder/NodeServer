@@ -14,7 +14,6 @@ import androidx.viewpager.widget.ViewPager
 import com.example.ttruserver.ViewPagerAdapter
 import com.google.android.material.navigation.NavigationView
 import kotlinx.android.synthetic.main.activity_main.*
-import kotlinx.android.synthetic.main.activity_main2.*
 import kotlinx.android.synthetic.main.content_main.*
 
 //import retrofit2.Call

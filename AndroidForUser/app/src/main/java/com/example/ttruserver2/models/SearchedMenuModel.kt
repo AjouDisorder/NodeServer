@@ -1,4 +1,4 @@
-package com.example.ttruserver2
+package com.example.ttruserver2.models
 
 class SearchedMenuModel(
     val menuPicture: Int,

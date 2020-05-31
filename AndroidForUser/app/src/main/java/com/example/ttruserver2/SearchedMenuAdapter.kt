@@ -8,15 +8,16 @@ import android.widget.ImageView
 import android.widget.TextView
 import android.widget.Toast
 import androidx.recyclerview.widget.RecyclerView
+import com.example.ttruserver2.models.SearchedMenuModel
 
-class SearchedMenuAdapter(val menuList: ArrayList<SearchedMenuModel>) : RecyclerView.Adapter<SearchedMenuAdapter.CustomViewHolder>(){
+class SearchedMenuAdapter(private val menuList: ArrayList<SearchedMenuModel>) : RecyclerView.Adapter<SearchedMenuAdapter.CustomViewHolder>(){
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): SearchedMenuAdapter.CustomViewHolder {
         val view = LayoutInflater.from(parent.context).inflate(R.layout.menu_list_item, parent, false)
         return CustomViewHolder(view).apply {
             itemView.setOnClickListener {
                 val curPos : Int = adapterPosition
-                val menu : SearchedMenuModel = menuList.get(curPos)
+                val menu : SearchedMenuModel = menuList[curPos]
                 Toast.makeText(parent.context, "이름 : ${menu.menuTitle}", Toast.LENGTH_SHORT).show()
             }
         }
@@ -48,6 +49,6 @@ class SearchedMenuAdapter(val menuList: ArrayList<SearchedMenuModel>) : Recycler
         val quantity = itemView.findViewById<TextView>(R.id.tv_quantity)
         val discount = itemView.findViewById<TextView>(R.id.tv_discount)
         val discountedPrice = itemView.findViewById<TextView>(R.id.tv_discountedPrice)
-        val originPrice = itemView.findViewById<TextView>(R.id.tv_originPrice)
+        val originPrice = itemView.findViewById<TextView>(R.id.tv_originMenuPrice)
     }
 }

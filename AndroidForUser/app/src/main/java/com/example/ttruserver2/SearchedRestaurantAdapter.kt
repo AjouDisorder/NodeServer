@@ -1,5 +1,6 @@
 package com.example.ttruserver2
 
+import android.content.Intent
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -7,7 +8,7 @@ import android.widget.ImageView
 import android.widget.TextView
 import android.widget.Toast
 import androidx.recyclerview.widget.RecyclerView
-import com.bumptech.glide.Glide
+import com.example.ttruserver2.models.SearchedRestaurantModel
 
 class SearchedRestaurantAdapter (val restaurantList: ArrayList<SearchedRestaurantModel>) : RecyclerView.Adapter<SearchedRestaurantAdapter.CustomViewHolder>(){
 
@@ -18,6 +19,8 @@ class SearchedRestaurantAdapter (val restaurantList: ArrayList<SearchedRestauran
                 val curPos : Int = adapterPosition
                 val restaurant : SearchedRestaurantModel = restaurantList.get(curPos)
                 Toast.makeText(parent.context, "이름 : ${restaurant.restaurantTitle}", Toast.LENGTH_SHORT).show()
+                val intent = Intent(parent.context, SearchedMenuDetailActivity::class.java)
+                parent.context.startActivity(intent)
             }
         }
     }

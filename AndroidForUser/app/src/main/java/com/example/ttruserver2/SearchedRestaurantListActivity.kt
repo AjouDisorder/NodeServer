@@ -3,6 +3,7 @@ package com.example.ttruserver2
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.example.ttruserver2.models.SearchedRestaurantModel
 import kotlinx.android.synthetic.main.activity_searched_restaurant_list.*
 
 class SearchedRestaurantListActivity : AppCompatActivity() {
@@ -18,10 +19,14 @@ class SearchedRestaurantListActivity : AppCompatActivity() {
             "찜&탕&찌개" to R.drawable.store_soup, "도시락" to R.drawable.store_dosirak, "중국집" to R.drawable.store_china)
 
         val restaurantList = arrayListOf(
-            SearchedRestaurantModel(restaurantTypeToIcons["술집"] as Int, "김형건 술집", 4.8,
-                1.5, "술집", true),
-            SearchedRestaurantModel(restaurantTypeToIcons["패스트푸드"] as Int, "맥도날드 수원 아주대점",
-                3.9, 0.7, "패스트푸드", false)
+            SearchedRestaurantModel(
+                restaurantTypeToIcons["술집"] as Int, "김형건 술집", 4.8,
+                1.5, "술집", true
+            ),
+            SearchedRestaurantModel(
+                restaurantTypeToIcons["패스트푸드"] as Int, "맥도날드 수원 아주대점",
+                3.9, 0.7, "패스트푸드", false
+            )
         )
 
         rv_restaurantList.layoutManager = LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false)

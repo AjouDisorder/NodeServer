@@ -174,7 +174,7 @@
             app:layout_constraintTop_toTopOf="@+id/tv_startTime" />
 
         <TextView
-            android:id="@+id/tv_originPrice"
+            android:id="@+id/tv_originMenuPrice"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="15000"
@@ -190,7 +190,7 @@
             android:textColor="#000000"
             android:textSize="18sp"
             android:textStyle="bold"
-            app:layout_constraintBottom_toTopOf="@+id/tv_originPrice"
+            app:layout_constraintBottom_toTopOf="@+id/tv_originMenuPrice"
             app:layout_constraintEnd_toStartOf="@+id/tv_discountedPrice2" />
 
         <TextView

@@ -1,4 +1,4 @@
-package com.example.ttruserver2
+package com.example.ttruserver2.models
 
 import com.bumptech.glide.load.resource.drawable.GlideDrawable
 import com.bumptech.glide.request.target.Target

@@ -8,7 +8,7 @@ module.exports = {
             "$geoNear": {
                 "near": {
                     "type": "Point",
-                    "coordinates": [parseFloat(req.query.lat), parseFloat(req.query.lng)]
+                    "coordinates": [parseFloat(req.query.lng), parseFloat(req.query.lat)]
                 },
                 "distanceField": "distance",
                 "maxDistance": 2000,
@@ -33,7 +33,7 @@ module.exports = {
             "$geoNear": {
                 "near": {
                     "type": "Point",
-                    "coordinates": [parseFloat(req.query.lat), parseFloat(req.query.lng)]
+                    "coordinates": [parseFloat(req.query.lng), parseFloat(req.query.lat)]
                 },
                 "distanceField": "distance",
                 "maxDistance": 2000,
@@ -60,7 +60,7 @@ module.exports = {
             "$geoNear": {
                 "near": {
                     "type": "Point",
-                    "coordinates": [parseFloat(req.query.lat), parseFloat(req.query.lng)]
+                    "coordinates": [parseFloat(req.query.lng), parseFloat(req.query.lat)]
                 },
                 "distanceField": "distance",
                 "maxDistance": 2000,
@@ -94,7 +94,7 @@ module.exports = {
             "$geoNear": {
                 "near": {
                     "type": "Point",
-                    "coordinates": [parseFloat(req.query.lat), parseFloat(req.query.lng)]
+                    "coordinates": [parseFloat(req.query.lng), parseFloat(req.query.lat)]
                 },
                 "distanceField": "distance",
                 "maxDistance": 2000,
@@ -118,7 +118,7 @@ module.exports = {
             "$geoNear": {
                 "near": {
                     "type": "Point",
-                    "coordinates": [parseFloat(req.query.lat), parseFloat(req.query.lng)]
+                    "coordinates": [parseFloat(req.query.lng), parseFloat(req.query.lat)]
                 },
                 "distanceField": "distance",
                 "maxDistance": 2000,
