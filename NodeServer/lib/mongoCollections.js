@@ -26,6 +26,7 @@ const originMenu = mongoose.Schema({
 
 const menu = mongoose.Schema({
   originMenu : originMenu,
+  restaurantTitle : String,
   title : String,
   type : String,
   location : {

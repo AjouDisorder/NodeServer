@@ -20,6 +20,7 @@ module.exports = {
             Restaurant_DB.findById(originMenu.restaurant_id, function(err2, restaurant){
                 var newMenu = new Menu_DB({
                     originMenu : originMenu,
+                    restaurantTitle : restaurant.title,
                     title : originMenu.title,
                     type : originMenu.type,
                     location : restaurant.location,
