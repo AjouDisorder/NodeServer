@@ -29,9 +29,6 @@ module.exports = {
                 res.json({"result" : "fail : menu sold out"})
             }else{
                 menu.quantity -= req.body.quantity
-                if (menu.quantity == 0){
-                    menu.alive = false
-                }
                 menu.save(function(error, updatedMenu){
                     User_DB.findById(req.body.user_id, function(err2, user){
                         var newTicket = new Ticket_DB({
@@ -53,7 +50,7 @@ module.exports = {
                                     restuarant.profit += ticket.totalPrice
                                     restuarant.paidTicketidList.push(ticket._id)
                                     //가게 menuidList에서 삭제
-                                    if (updatedMenu.alive == false){
+                                    if (menu.quantity == 0){
                                         var idx = restuarant.menuidList.findIndex(function(item) {
                                             return item == String(updatedMenu._id)})
                                         if (idx > -1) restuarant.menuidList.splice(idx, 1)
