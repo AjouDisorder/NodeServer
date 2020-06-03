@@ -33,7 +33,6 @@ module.exports = {
         var password = req.body.password;
 
         console.log(userId, password);
-        console.log(typeof userId, typeof password);
 
         if(typeof userId !== "string" || typeof password !== "string"){
             res.json({"result" : "fail!!"});

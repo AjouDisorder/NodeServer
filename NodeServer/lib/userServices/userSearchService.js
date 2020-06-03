@@ -14,8 +14,7 @@ module.exports = {
                 "maxDistance": 2000,
                 "spherical": true,
                 "query": {
-                    "title": { $regex: req.query.title, $options: 'i' },
-                    "alive": true
+                    "title": { $regex: req.query.title, $options: 'i' }
                 }
 
             }
@@ -39,8 +38,7 @@ module.exports = {
                 "maxDistance": 2000,
                 "spherical": true,
                 "query": {
-                    "type": req.query.type,
-                    "alive": true
+                    "type": req.query.type
                 }
 
             }

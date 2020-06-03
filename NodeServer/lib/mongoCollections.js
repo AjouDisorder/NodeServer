@@ -44,8 +44,7 @@ const menu = mongoose.Schema({
   quantity : Number,
   startDateObject : Date,
   endDateObject : Date,
-  method : String, //'takeout', 'forhere', 'both',
-  alive : { type: Boolean, default: false }
+  method : String //'takeout', 'forhere', 'both',
 })
 
 const ticket = mongoose.Schema({  //구입한 시간 필요할듯?
