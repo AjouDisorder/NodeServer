@@ -41,7 +41,9 @@ module.exports = {
                             menuName : menu.originMenu.title,
                             method : req.body.method,
                             value : randomString(8),
-                            messageForBoss : req.body.messageForBoss
+                            messageForBoss : req.body.messageForBoss,
+                            startDateObject : menu.startDateObject,
+                            endDateObject : menu.endDateObject
                         })
                         newTicket.save(function(err3, ticket){
                             user.ticketidList.push(ticket._id)
