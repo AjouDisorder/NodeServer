@@ -20,7 +20,7 @@ module.exports = {
             }
         }]).exec((err2, menuByS) => {
             if (err2) {
-                res.send({ "result": "search fail!" });
+                res.json({ "result": "search fail!" });
             }
             else {
                 res.json(menuByS);
@@ -44,7 +44,7 @@ module.exports = {
             }
         }]).exec((err2, menuByC) => {
             if (err2) {
-                res.send({ "result": "search fail!" });
+                res.json({ "result": "search fail!" });
             }
             else {
                 res.json(menuByC);
@@ -70,7 +70,7 @@ module.exports = {
             }
         }]).exec((err2, menuByT) => {
             if (err2) {
-                res.send({ "result": "search fail!" });
+                res.json({ "result": "search fail!" });
             }
             else {
                 res.json(menuByT);
@@ -104,7 +104,7 @@ module.exports = {
             }
         }]).exec((err2, restByS) => {
             if (err2) {
-                res.send({ "result": "search fail!" });
+                res.json({ "result": "search fail!" });
             }
             else {
                 res.json(restByS);
@@ -128,7 +128,7 @@ module.exports = {
             }
         }]).exec((err2, restByC) => {
             if (err2) {
-                res.send({ "result": "search fail!" });
+                res.json({ "result": "search fail!" });
             }
             else {
                 res.json(restByC);
