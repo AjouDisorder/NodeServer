@@ -18,6 +18,8 @@ module.exports = {
     createMenu: function(req, res){
         OriginMenu_DB.findById(req.body.originMenu_id, function(err, originMenu){
             Restaurant_DB.findById(originMenu.restaurant_id, function(err2, restaurant){
+                var result_start = new Date(req.body.start_year, req.body.start_month-1, req.body.start_date, req.body.start_hour, req.body.start_min)
+                var result_end = new Date(req.body.end_year, req.body.end_month-1, req.body.end_date, req.body.end_hour, req.body.end_min)
                 var newMenu = new Menu_DB({
                     originMenu : originMenu,
                     restaurantTitle : restaurant.title,
@@ -29,21 +31,14 @@ module.exports = {
                     discount : req.body.discount,
                     quantity : req.body.quantity,
                     method : req.body.method,
-                    startDateObject : new Date(req.body.start_year, req.body.start_month-1, req.body.start_date, req.body.start_hour, req.body.start_min),
-                    endDateObject : new Date(req.body.end_year, req.body.end_month-1, req.body.end_date, req.body.end_hour, req.body.end_min)
+                    startDateObject : result_start.getTime() + (3600000*9),
+                    endDateObject : result_end.getTime() + (3600000*9)
                 })
+                console.log(newMenu.startDateObject)//
+                console.log(newMenu.endDateObject)//
                 newMenu.save(function(err3, menu){
                     restaurant.menuidList.push(menu._id)
                     restaurant.save(function(err4, updatedRestaurant){
-                        /*
-                        var aliveJob = schedule.scheduleJob(
-                            `* ${req.body.start_min} ${req.body.start_hour} 
-                            ${req.body.start_date} ${req.body.start_month} *`, ()=>{
-                            menu.save(()=>{
-                                aliveJob.cancel()
-                            })
-                        });   
-                        */
                         //menu end : 메뉴 삭제 / 가게 메뉴id리스트 pop
                         var destroyJob = schedule.scheduleJob(
                             `* ${req.body.end_min} ${req.body.end_hour} 
@@ -66,24 +61,16 @@ module.exports = {
     },
     updateMenu: function(req, res){
         Menu_DB.findById(req.body.menu_id, (err, menu)=>{
+            var result_start = new Date(req.body.start_year, req.body.start_month-1, req.body.start_date, req.body.start_hour, req.body.start_min)
+            var result_end = new Date(req.body.end_year, req.body.end_month-1, req.body.end_date, req.body.end_hour, req.body.end_min)
             menu.picture = req.body.picture,
             menu.discount = req.body.discount,
             menu.quantity = req.body.quantity,
             menu.method = req.body.method,
-            menu.startDateObject = new Date(req.body.start_year, req.body.start_month-1, req.body.start_date, req.body.start_hour, req.body.start_min),
-            menu.endDateObject = new Date(req.body.end_year, req.body.end_month-1, req.body.end_date, req.body.end_hour, req.body.end_min)
+            menu.startDateObject = result_start.getTime() + (3600000*9),
+            menu.endDateObject = result_end.getTime() + (3600000*9)
             menu.save((err2, updatedMenu)=>{
                 Restaurant_DB.findById(updatedMenu.originMenu.restaurant_id, (err3, restaurant)=>{
-                    /*
-                    var aliveJob = schedule.scheduleJob(
-                        `* ${req.body.start_min} ${req.body.start_hour} 
-                        ${req.body.start_date} ${req.body.start_month} *`, ()=>{
-                        updatedMenu.alive = true
-                        updatedMenu.save(()=>{
-                            aliveJob.cancel()
-                        })
-                    });   */
-                    
                     //menu end : 메뉴 삭제 / 가게 메뉴id리스트 pop
                     var destroyJob = schedule.scheduleJob(
                         `* ${req.body.end_min} ${req.body.end_hour} 
