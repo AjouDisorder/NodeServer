@@ -35,16 +35,15 @@ module.exports = {
                 newMenu.save(function(err3, menu){
                     restaurant.menuidList.push(menu._id)
                     restaurant.save(function(err4, updatedRestaurant){
-                        //menu start : 메뉴.alive true
+                        /*
                         var aliveJob = schedule.scheduleJob(
                             `* ${req.body.start_min} ${req.body.start_hour} 
                             ${req.body.start_date} ${req.body.start_month} *`, ()=>{
-                            menu.alive = true
                             menu.save(()=>{
                                 aliveJob.cancel()
                             })
                         });   
-                        
+                        */
                         //menu end : 메뉴 삭제 / 가게 메뉴id리스트 pop
                         var destroyJob = schedule.scheduleJob(
                             `* ${req.body.end_min} ${req.body.end_hour} 
@@ -72,11 +71,10 @@ module.exports = {
             menu.quantity = req.body.quantity,
             menu.method = req.body.method,
             menu.startDateObject = new Date(req.body.start_year, req.body.start_month-1, req.body.start_date, req.body.start_hour, req.body.start_min),
-            menu.endDateObject = new Date(req.body.end_year, req.body.end_month-1, req.body.end_date, req.body.end_hour, req.body.end_min),
-            menu.alive = false
+            menu.endDateObject = new Date(req.body.end_year, req.body.end_month-1, req.body.end_date, req.body.end_hour, req.body.end_min)
             menu.save((err2, updatedMenu)=>{
                 Restaurant_DB.findById(updatedMenu.originMenu.restaurant_id, (err3, restaurant)=>{
-                    //menu start : 메뉴.alive true
+                    /*
                     var aliveJob = schedule.scheduleJob(
                         `* ${req.body.start_min} ${req.body.start_hour} 
                         ${req.body.start_date} ${req.body.start_month} *`, ()=>{
@@ -84,7 +82,7 @@ module.exports = {
                         updatedMenu.save(()=>{
                             aliveJob.cancel()
                         })
-                    });   
+                    });   */
                     
                     //menu end : 메뉴 삭제 / 가게 메뉴id리스트 pop
                     var destroyJob = schedule.scheduleJob(
