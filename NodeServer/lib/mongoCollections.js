@@ -66,7 +66,9 @@ const ticket = mongoose.Schema({  //구입한 시간 필요할듯?
   method : String, //'takeout' or 'forhere'
   value : String,  //random String
   available : { type: Boolean, default: true },
-  messageForBoss : String
+  messageForBoss : String,
+  startDateObject : Date,
+  endDateObject : Date
 })
 
 const review = mongoose.Schema({
