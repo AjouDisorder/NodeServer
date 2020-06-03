@@ -49,6 +49,7 @@ const menu = mongoose.Schema({
 
 const ticket = mongoose.Schema({  //구입한 시간 필요할듯?
   restaurant_id : String, //restaurant's PK
+  restaurantTitle : String,
   address : String,
   location : {
     type : {

@@ -33,6 +33,7 @@ module.exports = {
                     User_DB.findById(req.body.user_id, function(err2, user){
                         var newTicket = new Ticket_DB({
                             restaurant_id : menu.originMenu.restaurant_id,
+                            restaurantTitle : menu.restaurantTitle,
                             address : menu.address,
                             location : menu.location,
                             quantity : req.body.quantity,
