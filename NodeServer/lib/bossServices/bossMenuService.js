@@ -18,8 +18,12 @@ module.exports = {
     createMenu: function(req, res){
         OriginMenu_DB.findById(req.body.originMenu_id, function(err, originMenu){
             Restaurant_DB.findById(originMenu.restaurant_id, function(err2, restaurant){
+                const today = new Date()
                 var result_start = new Date(req.body.start_year, req.body.start_month-1, req.body.start_date, req.body.start_hour, req.body.start_min)
                 var result_end = new Date(req.body.end_year, req.body.end_month-1, req.body.end_date, req.body.end_hour, req.body.end_min)
+                var startDateObj = new Date(result_start.getTime() + (3600000*9))
+                var endDateObj = new Date(result_end.getTime() + (3600000*9))
+
                 var newMenu = new Menu_DB({
                     originMenu : originMenu,
                     restaurantTitle : restaurant.title,
@@ -31,11 +35,11 @@ module.exports = {
                     discount : req.body.discount,
                     quantity : req.body.quantity,
                     method : req.body.method,
-                    startDateObject : result_start.getTime() + (3600000*9),
-                    endDateObject : result_end.getTime() + (3600000*9)
+                    startDateObject : startDateObj,
+                    endDateObject : endDateObj,
+                    startTimeInt : parseInt(result_start.toTimeString().substr(0,5).replace(":", "")),
+                    endTimeInt : parseInt(result_end.toTimeString().substr(0,5).replace(":", ""))
                 })
-                console.log(newMenu.startDateObject)//
-                console.log(newMenu.endDateObject)//
                 newMenu.save(function(err3, menu){
                     restaurant.menuidList.push(menu._id)
                     restaurant.save(function(err4, updatedRestaurant){
@@ -63,12 +67,17 @@ module.exports = {
         Menu_DB.findById(req.body.menu_id, (err, menu)=>{
             var result_start = new Date(req.body.start_year, req.body.start_month-1, req.body.start_date, req.body.start_hour, req.body.start_min)
             var result_end = new Date(req.body.end_year, req.body.end_month-1, req.body.end_date, req.body.end_hour, req.body.end_min)
+            var startDateObj = new Date(result_start.getTime() + (3600000*9))
+            var endDateObj = new Date(result_end.getTime() + (3600000*9))
+
             menu.picture = req.body.picture,
             menu.discount = req.body.discount,
             menu.quantity = req.body.quantity,
             menu.method = req.body.method,
-            menu.startDateObject = result_start.getTime() + (3600000*9),
-            menu.endDateObject = result_end.getTime() + (3600000*9)
+            menu.startDateObject = startDateObj,
+            menu.endDateObject = endDateObj,
+            menu.startTimeInt = parseInt(result_start.toTimeString().substr(0,5).replace(":", "")),
+            menu.endTimeInt = parseInt(result_end.toTimeString().substr(0,5).replace(":", "")),
             menu.save((err2, updatedMenu)=>{
                 Restaurant_DB.findById(updatedMenu.originMenu.restaurant_id, (err3, restaurant)=>{
                     //menu end : 메뉴 삭제 / 가게 메뉴id리스트 pop

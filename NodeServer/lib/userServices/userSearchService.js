@@ -55,7 +55,9 @@ module.exports = {
     getMenuByTime: function (req, res) {
         var res_searchDate = new Date(req.query.year, req.query.month - 1, req.query.date, req.query.hour, req.query.min);
         var searchDate = new Date(res_searchDate.getTime() + (3600000*9))
-        console.log(searchDate)
+        var searchTimeInt = parseInt(res_searchDate.toTimeString().substr(0,5).replace(":", ""))
+        console.log(searchTimeInt)
+        
         Menu_DB.aggregate([{
             "$geoNear": {
                 "near": {
@@ -66,7 +68,8 @@ module.exports = {
                 "maxDistance": 2000,
                 "spherical": true,
                 "query": {
-                    "$and" : [{startDateObject : {"$lt": searchDate}},{endDateObject : {"$gte": searchDate}}]
+                    "$and" : [{startDateObject : {"$lt": searchDate}}, {endDateObject : {"$gt": searchDate}}, 
+                        {startTimeInt : {"$lt": searchTimeInt}}, {endTimeInt : {"$gt": searchTimeInt}}]
                 }
 
             }
