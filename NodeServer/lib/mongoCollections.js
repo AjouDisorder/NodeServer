@@ -44,6 +44,8 @@ const menu = mongoose.Schema({
   quantity : Number,
   startDateObject : Date,
   endDateObject : Date,
+  startTimeInt : Number,
+  endTimeInt : Number,
   method : String //'takeout', 'forhere', 'both',
 })
 
