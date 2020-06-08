@@ -140,7 +140,8 @@ module.exports = {
         });
     },
     getRestaurantDetail: function (req, res) {
-        //아마 없어질듯
-        return { "getRestaurantDetail": "getRestaurantDetail" }
+        Restaurant_DB.findById(req.query.restaurant_id, (err, restaurant) => {
+            res.json(restaurant)
+        })
     },
 }
