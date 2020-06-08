@@ -3,30 +3,6 @@ var Menu_DB = db.collection_menu()
 var Restaurant_DB = db.collection_restaurant()
 
 module.exports = {
-    getMenuBySearchBar: function (req, res) {
-        Menu_DB.aggregate([{
-            "$geoNear": {
-                "near": {
-                    "type": "Point",
-                    "coordinates": [parseFloat(req.query.lng), parseFloat(req.query.lat)]
-                },
-                "distanceField": "distance",
-                "maxDistance": 2000,
-                "spherical": true,
-                "query": {
-                    "title": { $regex: req.query.title, $options: 'i' }
-                }
-
-            }
-        }]).exec((err2, menuByS) => {
-            if (err2) {
-                res.json({ "result": "search fail!" });
-            }
-            else {
-                res.json(menuByS);
-            }
-        });
-    },
     getMenuByCategory: function (req, res) {
         Menu_DB.aggregate([{
             "$geoNear": {
@@ -91,6 +67,29 @@ module.exports = {
             });
         })
     },
+    getMenuBySearchBar: function (req, res) {
+        Menu_DB.aggregate([{
+            "$geoNear": {
+                "near": {
+                    "type": "Point",
+                    "coordinates": [parseFloat(req.query.lng), parseFloat(req.query.lat)]
+                },
+                "distanceField": "distance",
+                "maxDistance": 2000,
+                "spherical": true,
+                "query": {
+                    "title": { $regex: req.query.title, $options: 'i' }
+                }
+            }
+        }]).exec((err2, menuByS) => {
+            if (err2) {
+                res.json({ "result": "search fail!" });
+            }
+            else {
+                res.json(menuByS);
+            }
+        });
+    },
     getRestaurantBySearchBar: function (req, res) {
         Restaurant_DB.aggregate([{
             "$geoNear": {
@@ -104,7 +103,6 @@ module.exports = {
                 "query": {
                     "title": { $regex: req.query.title, $options: 'i' }
                 }
-
             }
         }]).exec((err2, restByS) => {
             if (err2) {
