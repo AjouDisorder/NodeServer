@@ -1,13 +1,14 @@
 var mongoose = require('mongoose');
 
-mongoose.connect('mongodb://localhost:27017/disorder', { useUnifiedTopology: true, useNewUrlParser: true});
-var db = mongoose.connection;
-db.on('error', function(){
-    console.log('Mongo Connection Failed!');
-});
-db.once('open', function() {
-    console.log('Mongo Connected!');
-});
+mongoose.connect('mongodb://localhost:27017/disorder', {
+  useUnifiedTopology: true, useNewUrlParser: true,
+  //user: 'admin', pass: 'eltmdhej123'
+}).then(()=>{
+  console.log('Mongo Connected!');
+}).catch(err =>{
+  console.log('Mongo Connection Failed!');
+  process.exit()
+})
 
 const picture = mongoose.Schema({
   path : String,

@@ -56,7 +56,6 @@ module.exports = {
         var res_searchDate = new Date(req.query.year, req.query.month - 1, req.query.date, req.query.hour, req.query.min);
         var searchDate = new Date(res_searchDate.getTime() + (3600000*9))
         var searchTimeInt = parseInt(res_searchDate.toTimeString().substr(0,5).replace(":", ""))
-        console.log(searchTimeInt)
         
         Menu_DB.aggregate([{
             "$geoNear": {
