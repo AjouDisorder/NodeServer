@@ -103,6 +103,7 @@ const user = mongoose.Schema({
       index : '2dsphere'
   }},
   ticketidList : [String],
+  reviewedTicketList : [String],
   favoriteRestaurantidList : [String], //restaurant's PK
   wishList : [String] //메뉴id
 })
