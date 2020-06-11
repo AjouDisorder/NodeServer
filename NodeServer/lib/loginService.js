@@ -13,6 +13,7 @@ module.exports = {
                 sex: req.body.sex,
                 phone: req.body.phone,
                 ticketList: [],
+                reviewedTicketList: [],
                 favoriteRestaurantidList: [],
                 wishList: []
         });
@@ -22,7 +23,6 @@ module.exports = {
             }else{
                 newUser.save(function (error, newUser) {
                     if (error) { throw error }
-                    console.log("user is signed up!");
                     res.json({"result" : "signup success"});
                 });
             }
@@ -64,7 +64,6 @@ module.exports = {
             }else{
                 newBoss.save(function (error, Boss) {
                     if (error) { throw error }
-                    console.log("boss is signed up!");
                     res.json({"result" : "signup success"});
                 });
             }

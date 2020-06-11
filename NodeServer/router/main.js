@@ -119,6 +119,9 @@ module.exports = function(app){
    app.get('/user/getReviewList', (req, res)=>{
       userReviewService.getReviewList(req, res)
    })
+   app.get('/user/getReviewedTicketList', (req, res)=>{
+      userReviewService.getReviewedTicketList(req, res)
+   })
    app.post('/user/createReview', function(req, res){
       userReviewService.createReview(req, res)
    })

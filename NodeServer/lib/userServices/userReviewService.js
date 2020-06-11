@@ -2,6 +2,7 @@ var db = require('../mongoCollections')
 var Ticket_DB = db.collection_ticket()
 var Review_DB = db.collection_review()
 var Restaurant_DB = db.collection_restaurant()
+var User_DB = db.collection_user()
 
 function addAverageGrade(avrGrade, NumOfPeople, inputGrade){
     return ((avrGrade * NumOfPeople) + inputGrade) / (NumOfPeople + 1)
@@ -27,7 +28,12 @@ module.exports = {
                     restaurant.avrGrade = addAverageGrade(
                         restaurant.avrGrade, restaurant.reviewidList.length, createdReview.grade)
                     restaurant.reviewidList.push(createdReview._id)
-                    restaurant.save(()=>{ })
+                    restaurant.save(()=>{
+                        User_DB.findById(req.body.user_id, (err4, user)=>{
+                            user.reviewedTicketList.push(selectedTicket._id)
+                            user.save(()=>{ })
+                        })
+                    })
                 })
             })
         })
@@ -62,6 +68,13 @@ module.exports = {
             Review_DB.find({'_id': { $in: restaurant.reviewidList} }, (err2, reviewList)=>{
                 res.json(reviewList);
             });
+        })
+    },
+    getReviewedTicketList: function(req, res){
+        User_DB.findById(req.query.user_id, (err, user)=>{
+            Ticket_DB.find({'_id': { $in: user.reviewedTicketList} }, (err2, reviewedTicketList)=>{
+                res.json(reviewedTicketList)
+            })
         })
     }
 }
