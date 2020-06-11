@@ -13,6 +13,7 @@ module.exports = {
                 sex: req.body.sex,
                 phone: req.body.phone,
                 ticketList: [],
+                reviewedTicketList: [],
                 favoriteRestaurantidList: [],
                 wishList: []
         });
