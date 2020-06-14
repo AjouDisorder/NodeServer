@@ -50,7 +50,7 @@ module.exports = {
     deleteReview: function (req, res) {
         //가게 평점, review리스트에서 삭제 -> 리뷰 데이터 삭제
         Review_DB.findById(req.body.review_id, (err, review)=>{
-            Restaurant_DB.findById(req.body.restaurant_id, (err2, restaurant)=>{
+            Restaurant_DB.findById(review.restaurant_id, (err2, restaurant)=>{
                 restaurant.avrGrade = subAverageGrade(
                     restaurant.avrGrade, restaurant.reviewidList.length, review.grade)
                 var idx = restaurant.reviewidList.findIndex(function(item) {
