@@ -14,9 +14,7 @@ module.exports = {
     },
     updateInfo: function(req, res) {
         User_DB.findById(req.body.user_id, (err, user)=>{
-            user.userId = req.body.userId
             user.password = req.body.password
-            user.nickname = req.body.nickname
             user.name = req.body.name
             user.sex = req.body.sex
             user.phone = req.body.phone
