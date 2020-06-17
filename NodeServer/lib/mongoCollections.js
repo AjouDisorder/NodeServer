@@ -26,6 +26,7 @@ const originMenu = mongoose.Schema({
 })
 
 const menu = mongoose.Schema({
+  token : String,
   originMenu : originMenu,
   restaurantTitle : String,
   title : String,
@@ -51,6 +52,7 @@ const menu = mongoose.Schema({
 })
 
 const ticket = mongoose.Schema({  //구입한 시간 필요할듯?
+  token : String,
   restaurant_id : String, //restaurant's PK
   restaurantTitle : String,
   address : String,
@@ -109,6 +111,7 @@ const user = mongoose.Schema({
 })
 
 const restaurant = mongoose.Schema({
+  token : String,
   title : String,
   type : String,
   location : {
@@ -137,6 +140,7 @@ const restaurant = mongoose.Schema({
 })
 
 const boss = mongoose.Schema({
+  bossToken : String,//boss token
   bossId : String,
   password : String,
   name : String,

@@ -13,6 +13,7 @@ var bossMenuService = require('../lib/bossServices/bossMenuService');
 var bossTicketService = require('../lib/bossServices/bossTicketService');
 var bossReviewService = require('../lib/bossServices/bossReviewService');
 var bossInfoService = require('../lib/bossServices/bossInfoService');
+var sendPush = require('../lib/sendPush')
 
 //multer for picture
 const multer = require('multer')
@@ -41,6 +42,13 @@ module.exports = function(app){
    app.post('/boss/login', function(req, res){
       loginService.bossLogin(req, res)
    })
+   app.post('/sendPush1', function(req, res){
+      sendPush.push1(req, res)
+   })
+   app.post('/sendPush2', function(req, res){
+      sendPush.push2(req, res)
+   })
+   
 
    //Picture Service
    app.post('/createPicture', upload.single('img'), function(req, res){

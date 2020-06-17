@@ -25,6 +25,7 @@ module.exports = {
                 var endDateObj = new Date(result_end.getTime() + (3600000*9))
 
                 var newMenu = new Menu_DB({
+                    token: restaurant.token,
                     originMenu : originMenu,
                     restaurantTitle : restaurant.title,
                     title : originMenu.title,
