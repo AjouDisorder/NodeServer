@@ -16,31 +16,34 @@ module.exports = {
         })
     },
     createRestaurant: function (req, res) {
-        var newRestaurant = new Restaurant_DB({
-            title: req.body.title, type: req.body.type,
-            description: req.body.description, 
-            address: req.body.address,
-            //req.body.lat과 req.body.lng를 필수로 넣어줘야함
-            location : {
-                coordinates : [req.body.lng, req.body.lat]
-            },
-            phone: req.body.phone,
-            picture: req.body.picture,  //createPicture로 !
-            originMenuList: [],
-            menuidList: [], paidTicketidList: [],
-            certifiedTicketidList: [], reviewidList: [],
-            favoriteUseridList: [],
-        });
-        newRestaurant.save(function(err2, restaurant){
-            if (err2) res.send(err2)
-            Boss_DB.findById(req.body.boss_id, function(err3, boss){
-                if (err3) res.send(err3)
-                boss.restaurantidList.push(restaurant._id)
-                boss.save(function(err4, updatedBoss){
-                    if (err4) res.send(err4)
-                    res.json(restaurant)
+        Boss_DB.findById(req.body.boss_id, function(err, boss){
+            var newRestaurant = new Restaurant_DB({
+                token: boss.bossToken,
+                title: req.body.title, type: req.body.type,
+                description: req.body.description, 
+                address: req.body.address,
+                //req.body.lat과 req.body.lng를 필수로 넣어줘야함
+                location : {
+                    coordinates : [req.body.lng, req.body.lat]
+                },
+                phone: req.body.phone,
+                picture: req.body.picture,  //createPicture로 !
+                originMenuList: [],
+                menuidList: [], paidTicketidList: [],
+                certifiedTicketidList: [], reviewidList: [],
+                favoriteUseridList: [],
+            });
+            newRestaurant.save(function(err2, restaurant){
+                if (err2) res.send(err2)
+                Boss_DB.findById(req.body.boss_id, function(err3, boss){
+                    if (err3) res.send(err3)
+                    boss.restaurantidList.push(restaurant._id)
+                    boss.save(function(err4, updatedBoss){
+                        if (err4) res.send(err4)
+                        res.json(restaurant)
+                    })
                 })
-            })
+            }) 
         })
     },
     updateRestaurant: function(req, res){

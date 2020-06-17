@@ -50,6 +50,7 @@ module.exports = {
     },
     bossSignup: function(req, res){
         var newBoss = new Boss_DB({
+            bossToken: req.body.bossToken,
             bossId: req.body.bossId, 
             password: req.body.password,
             name: req.body.name,
