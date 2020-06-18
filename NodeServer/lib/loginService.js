@@ -73,6 +73,7 @@ module.exports = {
     bossLogin: function (req, res) {
         var bossId = req.body.bossId;
         var password = req.body.password;
+        var token = req.body.token;
 
         console.log(bossId, password);
         console.log(typeof bossId, typeof password);
@@ -82,8 +83,17 @@ module.exports = {
         }else{
             Boss_DB.findOne({bossId: bossId, password: password}).exec((err, result) =>{
                 if(result){
-                    console.log(result)
-                    res.send(result);
+                    result.bossToken = token
+                    result.save((err2, updatedBoss)=>{
+                        if(updatedBoss){
+                            res.json(updatedBoss)
+                            console.log(updatedBoss)
+                        }
+                        else{
+                            res.send({"result" : "token refresh failed"});
+
+                        }
+                    })
                 }
                 else{
                     res.send({"result" : "login failed"});
